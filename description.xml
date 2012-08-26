@@ -4,9 +4,9 @@
  xmlns:dep="http://openoffice.org/extensions/description/2006"
  xmlns:xlink="http://www.w3.org/1999/xlink">
 	<identifier value="at.univie.midicsdext"/>
-	<version value="2010.12.28" />
+	<version value="2012.08.26" />
   <publisher>
-    <name lang="en">Martin Dobiasch</name>
+    <name lang="en">Martin Dobiasch, Dr. Erich Neuwirth</name>
   </publisher>
   <display-name>
     <name lang="en">MidiCSD</name>
