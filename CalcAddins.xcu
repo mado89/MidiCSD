@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<oor:component-data xmlns:oor="http://openoffice.org/2001/registry"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema" oor:name="CalcAddIns"
+  oor:package="org.openoffice.Office">
+  <node oor:name="AddInInfo">
+    <node oor:name="at.univie.MidiCSDextAddIn" oor:op="replace">
+    	<node oor:name="AddInFunctions">
+  			<node oor:name="CSDRightFrom" oor:op="replace">
+  				<prop oor:name="DisplayName">
+  					<value xml:lang="en">csdrightfrom</value>
+  				</prop>
+  				<prop oor:name="Description">
+  					<value/>
+  				</prop>
+  				<prop oor:name="Category">
+  					<value>Add-In</value>
+  				</prop>
+  				<prop oor:name="CompatibilityName">
+  					<value xml:lang="en">csdrightfrom</value>
+  				</prop>
+  				<node oor:name="Parameters">
+  					<node oor:name="startcell" oor:op="replace">
+  						<prop oor:name="DisplayName">
+  							<value xml:lang="en">startcell</value>
+  						</prop>
+  						<prop oor:name="Description">
+  							<value/>
+  						</prop>
+  					</node>
+  				</node>
+  			</node>
+  			<node oor:name="CSDRangeAddress" oor:op="replace">
+  				<prop oor:name="DisplayName">
+  					<value xml:lang="en">csdrangeaddress</value>
+  				</prop>
+  				<prop oor:name="Description">
+  					<value/>
+  				</prop>
+  				<prop oor:name="Category">
+  					<value>Add-In</value>
+  				</prop>
+  				<prop oor:name="CompatibilityName">
+  					<value/>
+  				</prop>
+  				<node oor:name="Parameters">
+  					<node oor:name="range" oor:op="replace">
+  						<prop oor:name="DisplayName">
+  							<value xml:lang="en">range</value>
+  						</prop>
+  						<prop oor:name="Description">
+  							<value/>
+  						</prop>
+  					</node>
+  				</node>
+  			</node>
+  			<node oor:name="CSDDownFrom" oor:op="replace">
+  				<prop oor:name="DisplayName">
+  					<value xml:lang="en">csddownfrom</value>
+  				</prop>
+  				<prop oor:name="Description">
+  					<value/>
+  				</prop>
+  				<prop oor:name="Category">
+  					<value>Add-In</value>
+  				</prop>
+  				<prop oor:name="CompatibilityName">
+  					<value xml:lang="en">csddownfrom</value>
+  				</prop>
+  				<node oor:name="Parameters">
+  					<node oor:name="csddownfrom.startcell" oor:op="replace">
+  						<prop oor:name="DisplayName">
+  							<value xml:lang="en">startcell</value>
+  						</prop>
+  						<prop oor:name="Description">
+  							<value/>
+  						</prop>
+  					</node>
+  				</node>
+  			</node>
+  			<node oor:name="CSDRightDownFrom" oor:op="replace">
+  				<prop oor:name="DisplayName">
+  					<value xml:lang="en">csddownrightfrom</value>
+  				</prop>
+  				<prop oor:name="Description">
+  					<value/>
+  				</prop>
+  				<prop oor:name="Category">
+  					<value>Add-In</value>
+  				</prop>
+  				<prop oor:name="CompatibilityName">
+  					<value xml:lang="en">csddownrightfrom</value>
+  				</prop>
+  				<node oor:name="Parameters">
+  					<node oor:name="csddownrightfrom.startcell" oor:op="replace">
+  						<prop oor:name="DisplayName">
+  							<value xml:lang="en">startcell</value>
+  						</prop>
+  						<prop oor:name="Description">
+  							<value/>
+  						</prop>
+  					</node>
+  				</node>
+  			</node>
+  		</node>
+  	</node>
+  </node>
+</oor:component-data>

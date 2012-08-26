@@ -1,0 +1,12 @@
+#ifndef __at_univie_midicsd_midicsdextaddin_idl__
+#define __at_univie_midicsd_midicsdextaddin_idl__
+
+#include <at/univie/MidiCSD/XMidiCSDextAddIn.idl>
+module at { module univie { module MidiCSD { 	
+
+	service MidiCSDextAddIn : at::univie::MidiCSD::XMidiCSDextAddIn {
+
+	};
+
+ }; }; };
+#endif

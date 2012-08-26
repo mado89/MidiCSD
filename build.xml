@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="all" name="MidiCSDext">
+	<fileset id="jarsrc1" dir="src">
+			<include name="**/*.class" />
+			<include name="**/*.classes" />
+	</fileset>
+	<fileset id="jarsrc2" dir="bin">
+			<include name="**/*.class" />
+			<include name="**/*.classes" />
+	</fileset>
+		
+	<fileset id="jaruno" dir="uno">
+			<include name="**/*.class" />
+	</fileset>
+	
+	<target name="all" description="Build everything." depends="make-oxt,jar,pack,deploy-mac">
+			<echo message="Application built. !" />
+	</target>
+	
+	<target name="make-oxt">
+		<zip update="false" destfile="build/MidiCSDext.oxt">
+			<zipfileset dir="Office/UI/" includes="*" prefix="Office/UI" />
+			<zipfileset dir="" includes="manifest.xml" prefix="META-INF" />
+			<zipfileset dir="pkg-desc" includes="*" prefix="pkg-desc" />
+			<zipfileset dir="." includes="Addons.xcu" />
+			<zipfileset dir="." includes="CalcAddins.xcu" />
+			<zipfileset dir="." includes="description.xml" />
+			<zipfileset dir="." includes="ProtocolHandler.xcu" />
+			<zipfileset dir="." includes="types.rdb" />
+		</zip>
+	</target>
+	
+	<target name="pack">
+		<delete file="build/MidiCSDext.oxt" />
+		<copy file="MidiCSDext.oxt" tofile="build/MidiCSDext.oxt" />
+		<zip update="true" destfile="build/MidiCSDext.oxt">
+			<zipfileset dir="tmp" includes="*.jar" casesensitive="yes"/>
+		</zip>
+	</target>
+	
+	<target name="jar">
+		<javac srcdir="src" debug="on" verbose="yes"
+			destdir="bin" 
+			classpath="uno:/Applications/LibreOffice.app/Contents/basis-link/ure-link/share/java/juh.jar:/Applications/LibreOffice.app/Contents/basis-link/ure-link/share/java/jurt.jar:/Applications/LibreOffice.app/Contents/basis-link/ure-link/share/java/ridl.jar:/Applications/LibreOffice.app/Contents/basis-link/program/classes/unoil.jar"
+			listfiles="yes" />
+		<delete file="tmp/MidiCSDext.jar" />
+		<jar destfile="tmp/MidiCSDext.jar" strict="warn" 
+			update="true">
+			<fileset refid="jarsrc1" />
+			<fileset refid="jarsrc2" />
+			<fileset refid="jaruno" />
+			<!-- <fileset dir="src" includes="*/RegistrationHandler.classes" /> -->
+			<manifest>
+				<attribute name="RegistrationClassName" value="at.univie.MidiCSD.impl.RegistrationHandler" />
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="deploy-mac">
+		<exec executable="/Applications/OpenOffice.org.app/Contents/program/unopkg">
+			<arg value="add" />
+			<arg value="-f" />
+			<arg value="-v" />
+			<arg value="build/MidiCSDext.oxt" />
+		</exec>
+		<exec executable="/Applications/LibreOffice.app/Contents/program/unopkg">
+			<arg value="add" />
+			<arg value="-f" />
+			<arg value="build/MidiCSDext.oxt" />
+		</exec>
+		<exec executable="/Applications/NeoOffice.app/Contents/program/unopkg">
+			<arg value="add" />
+			<arg value="-f" />
+			<arg value="build/MidiCSDext.oxt" />
+		</exec>
+	</target>
+</project>

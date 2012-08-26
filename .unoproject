@@ -1,0 +1,12 @@
+#UNO project configuration file
+#Sun Aug 26 20:10:03 CEST 2012
+project.srcdir=/source
+javaversion=java4
+regclassname=at.univie.MidiCSD.impl.RegistrationHandler
+project.sdk=350m1
+project.ooo=URE
+project.implementation=impl
+project.build=build
+project.language=Java
+project.prefix=at.univie.MidiCSD
+project.idl=/idl

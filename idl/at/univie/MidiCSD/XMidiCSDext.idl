@@ -1,0 +1,11 @@
+#ifndef __at_univie_midicsd_xmidicsdext_idl__
+#define __at_univie_midicsd_xmidicsdext_idl__
+
+module at { module univie { module MidiCSD { 	
+
+	interface XMidiCSDext {
+
+	};
+
+ }; }; };
+#endif
