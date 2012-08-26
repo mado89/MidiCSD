@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import at.univie.MidiCSD.Debug;
 import at.univie.MidiCSD.TimedMidiStream;
 import at.univie.MidiCSD.impl.MidiCSDextImpl;
 
@@ -33,17 +34,21 @@ public class ToFilePlayer implements IPlayer
 		{
 			String cmd;
 			String MidiPlayer;
-			String h, line;
-			String hack;
+			@SuppressWarnings("unused") //Because for Debuggin it can be used
+			String out;
+			String line;
+			String hack1, hack2;
 			
 			String osName= System.getProperty("os.name");
+			Debug.showMessage(osName);
 			
-			hack= "";
+			hack1= "";
+			hack2= "";
 			
 			if( osName.equals("Mac OS X") )
 			{
 				MidiPlayer= "/usr/local/bin/MidiPlayer.jar";
-				hack= " &";
+				hack2= " &";
 			}
 			else if( osName.startsWith("Windows") )
 			{
@@ -53,15 +58,18 @@ public class ToFilePlayer implements IPlayer
 					MidiPlayer= "MidiPlayer.jar";
 			}
 			else if( osName.equals("Linux") )
+			{
 				if( MidiCSDextImpl.PackagePath != "" )
 					MidiPlayer= MidiCSDextImpl.PackagePath + "/MidiPlayer.jar";
 				else
 					MidiPlayer= "MidiPlayer.jar";
+				hack1= "padsp ";
+			}
 			else
 				MidiPlayer= "MidiPlayer.jar";
 			
-			cmd= "java -jar " + MidiPlayer + " " + filename + hack;
-			h= "";
+			cmd= hack1 + "java -jar " + MidiPlayer + " " + filename + hack2;
+			out= "";
 			
 			try
 			{
@@ -77,7 +85,7 @@ public class ToFilePlayer implements IPlayer
 				
 				while( (line= input.readLine()) != null )
 				{
-					h+= line + "\n";
+					out+= line + "\n";
 				}
 			
 				//TODO: For Debugging Issues it would be nice to have that

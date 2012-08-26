@@ -101,10 +101,13 @@ public final class MidiCSDextImpl extends WeakBase implements
 	{
 		m_xContext= context;
 		m_xMCF= m_xContext.getServiceManager();
+		
+		/*
 		m_streamqueue= new MidiQueue();
 		// m_xDesktop= null;
 		
 		initInternPlayer();
+		*/
 	}
 	
 	private void initInternPlayer()
@@ -221,6 +224,8 @@ public final class MidiCSDextImpl extends WeakBase implements
 		
 		if( PackagePath.equals("") )
 			updatePackagePath();
+		
+		initInternPlayer();
 	}
 	
 	/**
@@ -404,7 +409,7 @@ public final class MidiCSDextImpl extends WeakBase implements
 		// Debug.showMessage("PlayCurrentQueue: " + m_streamqueue.getCurrentStream());
 		if( m_streamqueue.getCurrentStream() != null )
 		{
-			// Debug.showMessage("current stream");
+			Debug.showMessage("current stream");
 			tmp= m_streamqueue.getCurrentStream().clone();
 			tmp.ShortenDurations();
 			
@@ -433,7 +438,8 @@ public final class MidiCSDextImpl extends WeakBase implements
 		 * Dim tmpPhraseToPlay As TimedMidiStream On Error Resume Next Set
 		 * tmpPhraseToPlay = New TimedMidiStream Set tmpPhraseToPlay =
 		 * CurrentStream.Clone tmpPhraseToPlay.ShortenDurations tmpPhraseToPlay.Play
-		 */}
+		 */
+	}
 	
 	private void ClearAllQueues()
 	{

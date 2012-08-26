@@ -777,7 +777,18 @@ FinishDevice:
 				{
 					if( !parser.setExecutable(true) )
 						Debug.showMessage(parser.getName() + " kann nicht ausgefuehrt werden");
-					cmdpath= "\"" + cmdpath + "\"";
+					
+					/*
+					 * Martin Dobiasch replaced this on 2012-08-26
+					 * The problem is that the path could contain a blank which
+					 * could cause troubles somehow in the past it was possible
+					 *  to just place the command in " ", but now this doesn't
+					 *  work anymore so we need to replace any special
+					 *   characters ...
+					 */
+					// cmdpath= "\"" + cmdpath + "\"";
+					
+					cmdpath.replace(" ", "\\ ");
 				}
 					
 					

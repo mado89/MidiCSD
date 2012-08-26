@@ -32,10 +32,11 @@ public class Debug
 			jframe.setSize(300, 200);
 			jframe.setVisible(true);
 		}
-    javax.swing.JOptionPane.showMessageDialog(
-        jframe, sMessage, "Debugging information",
-        javax.swing.JOptionPane.INFORMATION_MESSAGE);
-    jframe.dispose();*/
+		
+		javax.swing.JOptionPane.showMessageDialog(
+				jframe, sMessage, "Debugging information",
+		javax.swing.JOptionPane.INFORMATION_MESSAGE);
+		jframe.dispose();*/
 		/*if( out == null )
 			openfile();
 		
