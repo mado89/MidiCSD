@@ -1,7 +1,7 @@
-MidiCSD 2010
+MidiCSD 2014
 Copyright (c) 2009 Erich Neuwirth, University of Vienna
 2010 Martin Dobiasch (calc Portation, fixes, ...)
 
-producing music and sound effects
-with nothing more than just OpenOffice Calc
+producing music and sound effects on RaspberryPI
+with nothing more than just LibreOffice Calc
 
