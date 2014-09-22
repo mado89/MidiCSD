@@ -37,7 +37,7 @@ public class Debug
 				jframe, sMessage, "Debugging information",
 		javax.swing.JOptionPane.INFORMATION_MESSAGE);
 		jframe.dispose();*/
-		/*if( out == null )
+		if( out == null )
 			openfile();
 		
 		try
@@ -48,17 +48,17 @@ public class Debug
 		catch (IOException e1)
 		{
 			Debug.showException(e1, "queryDispatch");
-		}*/
+		}
 		System.err.println("Debug: " + sMessage);
 	}
 	
 	private static void openfile()
 	{
 		//File file= new File(MidiCSDextImpl.PackagePath + System.getProperty("file.separator") + "midicsdlog.txt");
-		File file= new File("/midicsdlog.txt");
+		File file= new File("/home/pi/midicsdlog.txt");
 		try
 		{
-			out= new BufferedWriter(new FileWriter(file));
+			out= new BufferedWriter(new FileWriter(file, true));
 		}
 		catch (IOException e)
 		{

@@ -101,6 +101,8 @@ public final class MidiCSDextImpl extends WeakBase implements
 	{
 		m_xContext= context;
 		m_xMCF= m_xContext.getServiceManager();
+
+		Debug.showMessage("MidiCSDextImpl::MidiCSDextImpl");
 		
 		/*
 		m_streamqueue= new MidiQueue();
@@ -198,6 +200,7 @@ public final class MidiCSDextImpl extends WeakBase implements
 	
 	public void initialize(Object[] aArguments) throws com.sun.star.uno.Exception
 	{
+		Debug.showMessage("MidiCSDextImpl::initialize");
 		if( aArguments.length > 0 )
 		{
 			m_xFrame= (com.sun.star.frame.XFrame) UnoRuntime.queryInterface(
@@ -234,10 +237,10 @@ public final class MidiCSDextImpl extends WeakBase implements
 	public com.sun.star.frame.XDispatch queryDispatch(com.sun.star.util.URL aURL,
 			String sTargetFrameName, int iSearchFlags)
 	{
-		// System.out.println("MidiCSDext::queryDispatch");
+		System.out.println("MidiCSDext::queryDispatch");
 		if( aURL.Protocol.compareTo("at.univie.midicsd:") == 0 )
 		{
-			// Debug.showMessage( aURL.Path );
+			Debug.showMessage( aURL.Path );
 			if( aURL.Path.compareTo("addselectiontocurrentqueue") == 0
 					|| aURL.Path.compareTo("clearallqueues") == 0
 					|| aURL.Path.compareTo("play") == 0
@@ -277,10 +280,10 @@ public final class MidiCSDextImpl extends WeakBase implements
 	public void dispatch(com.sun.star.util.URL aURL,
 			com.sun.star.beans.PropertyValue[] aArguments)
 	{
-		// Debug.showMessage("dispatch " + aURL.Protocol + aURL.Path);
+		Debug.showMessage("dispatch " + aURL.Protocol + aURL.Path);
 		
 		System.out.println("MidiCSDext::dispatch " + aURL.Path );
-		// Debug.showMessage(aURL.Path);
+		Debug.showMessage(aURL.Path);
 		try
 		{
 			if( aURL.Protocol.compareTo("at.univie.midicsd:") == 0 )

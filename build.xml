@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project basedir="." default="all" name="MidiCSDext">
-	<fileset id="jarsrc1" dir="src">
+
+	<property name="OO_SDK_URE_JAVA_DIR" location="/usr/share/java" />
+	<property name="OFFICE_HOME" location="/usr/share/libreoffice" />
+	<property name="OFFICE_PROGRAM_PATH" location="/usr/share/libreoffice/program" />
+	
+
+	<path id="office.class.path">
+            <fileset dir="${OFFICE_PROGRAM_PATH}/classes">
+                <include name="*.jar"/>
+            </fileset>
+            <fileset dir="${OO_SDK_URE_JAVA_DIR}">
+                <include name="*.jar"/>
+            </fileset>
+        </path>
+
+	<fileset id="jarsrc1" dir="source">
 			<include name="**/*.class" />
 			<include name="**/*.classes" />
 	</fileset>
@@ -39,16 +54,32 @@
 	</target>
 	
 	<target name="jar">
-		<javac srcdir="src" debug="on" verbose="yes"
+		
+		<path id="urd.java">
+		    <fileset dir="build">
+		        <include name="**/*.class"/>
+		    </fileset>
+		</path>
+
+		<javac srcdir="source" debug="on" verbose="yes"
 			destdir="bin" 
-			classpath="uno:/Applications/LibreOffice.app/Contents/basis-link/ure-link/share/java/juh.jar:/Applications/LibreOffice.app/Contents/basis-link/ure-link/share/java/jurt.jar:/Applications/LibreOffice.app/Contents/basis-link/ure-link/share/java/ridl.jar:/Applications/LibreOffice.app/Contents/basis-link/program/classes/unoil.jar"
-			listfiles="yes" />
+			listfiles="yes">
+			<classpath>
+	                	<pathelement location="bin"/>
+		                <path refid="office.class.path"/>
+				<!-- <path refid="urd.java"/> -->
+				<pathelement location="build"/>
+			</classpath>
+		</javac>
 		<delete file="tmp/MidiCSDext.jar" />
 		<jar destfile="tmp/MidiCSDext.jar" strict="warn" 
 			update="true">
 			<fileset refid="jarsrc1" />
 			<fileset refid="jarsrc2" />
-			<fileset refid="jaruno" />
+			<!-- <fileset refid="urd.java" /> -->
+			<fileset dir="build">
+				<include name="**/*.class"/>
+			</fileset>
 			<!-- <fileset dir="src" includes="*/RegistrationHandler.classes" /> -->
 			<manifest>
 				<attribute name="RegistrationClassName" value="at.univie.MidiCSD.impl.RegistrationHandler" />
