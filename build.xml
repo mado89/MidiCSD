@@ -4,6 +4,8 @@
 	<property name="OO_SDK_URE_JAVA_DIR" location="/usr/share/java" />
 	<property name="OFFICE_HOME" location="/usr/share/libreoffice" />
 	<property name="OFFICE_PROGRAM_PATH" location="/usr/share/libreoffice/program" />
+
+	<property name="install.dir" location=".config/libreoffice/3/user/uno_packages/cache/uno_packages/lu7ewc8q.tmp_/MidiCSDext.oxt/" />
 	
 
 	<path id="office.class.path">
@@ -62,7 +64,7 @@
 		</path>
 
 		<javac srcdir="source" debug="on" verbose="yes"
-			destdir="bin" 
+			destdir="bin" source="1.5" target="1.5"
 			listfiles="yes">
 			<classpath>
 	                	<pathelement location="bin"/>
@@ -85,6 +87,10 @@
 				<attribute name="RegistrationClassName" value="at.univie.MidiCSD.impl.RegistrationHandler" />
 			</manifest>
 		</jar>
+	</target>
+
+	<target name="update-raspberry" depends="jar">
+		<copy file="tmp/MidiCSDext.jar" todir="${install.dir}" />
 	</target>
 	
 	<target name="deploy-mac">
