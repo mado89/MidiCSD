@@ -138,7 +138,7 @@
 						<value>com.sun.star.sheet.SpreadsheetDocument</value>
 					</prop>
 					<prop oor:name="URL" oor:type="xs:string">
-						<value>vnd.sun.star.script:BasicAddonBuilder.DlgAbout.ShowAbout?language=Basic&amp;location=application</value>
+						<value>vnd.sun.star.script:MidiCSDbasic.DlgAbout.ShowAbout?language=Basic&amp;location=application</value>
 					</prop>
 					<prop oor:name="Title" oor:type="xs:string">
 						<value>About</value>
