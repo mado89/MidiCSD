@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dlg:window PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "dialog.dtd">
+<dlg:window xmlns:dlg="http://openoffice.org/2000/dialog" xmlns:script="http://openoffice.org/2000/script" dlg:id="DlgAbout" dlg:left="160" dlg:top="114" dlg:width="154" dlg:height="118" dlg:closeable="true" dlg:moveable="true" dlg:title="MidiCSD">
+ <dlg:styles>
+  <dlg:style dlg:style-id="0" dlg:font-height="13"/>
+ </dlg:styles>
+ <dlg:bulletinboard>
+  <dlg:button dlg:id="CommandButton1" dlg:tab-index="0" dlg:left="61" dlg:top="98" dlg:width="40" dlg:height="14" dlg:value="OK" dlg:button-type="ok"/>
+  <dlg:text dlg:id="Label1" dlg:tab-index="1" dlg:left="19" dlg:top="40" dlg:width="119" dlg:height="49" dlg:value="Producing music and sound effects &#x0a;from within Excel&#x0a;&#x0a;© 2011 Erich Neuwirth, University of Vienna,&#x0a;    (Calc Portation: Martin Dobiasch)" dlg:align="center"/>
+  <dlg:text dlg:style-id="0" dlg:id="Label2" dlg:tab-index="2" dlg:left="48" dlg:top="10" dlg:width="68" dlg:height="20" dlg:value="MidiCSD" dlg:align="center"/>
+ </dlg:bulletinboard>
+</dlg:window>

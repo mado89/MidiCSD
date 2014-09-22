@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE script:module PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "module.dtd">
+<script:module xmlns:script="http://openoffice.org/2000/script" script:name="DlgAbout" script:language="StarBasic">REM  *****  BASIC  *****
+
+Option Explicit
+
+Sub Main
+
+End Sub
+
+Function ShowAbout() As Integer
+	
+	Dim oLib As Object
+	Dim oLibDialog As Object
+	Dim oDlg As Object
+	Dim oDlgModel As Object
+	Dim oTxtEdit As Object
+	Dim iDialogResult As Integer
+
+	DialogLibraries.LoadLibrary(&quot;MidiCSDbasic&quot;)
+	oLib = DialogLibraries.GetByName(&quot;MidiCSDbasic&quot;)
+	oLibDialog = oLib.GetByName(&quot;DlgAbout&quot;)
+	
+	oDlg = CreateUnoDialog(oLibDialog)
+	oDlgModel = oDlg.Model
+	
+	&apos;execute the dialog
+	iDialogResult = oDlg.Execute()
+	
+	&apos;exit with the dialog result
+	ShowAbout = iDialogResult
+	
+End Function
+</script:module>

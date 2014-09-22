@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE script:module PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "module.dtd">
+<script:module xmlns:script="http://openoffice.org/2000/script" script:name="MidiCSDext" script:language="StarBasic">REM  *****  BASIC  *****
+
+Option Explicit
+
+Sub Main
+
+End Sub
+
+Function SetFileName() As Integer
+	Dim Fn As String
+	Dim myService
+	
+	&apos; Create the new UNO service
+	myService = createUNOService(&quot;at.univie.midicsd.midicsdext&quot;)
+	
+	Fn = InputBox(&quot;Enter Filename (no extension):&quot;, &quot;Midifile name&quot;)
+	
+	myService.setFileName(Fn)
+	
+	SetFileName = 0
+End Function
+</script:module>
