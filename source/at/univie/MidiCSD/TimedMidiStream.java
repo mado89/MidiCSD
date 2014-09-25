@@ -1314,6 +1314,7 @@ FinishDevice:
 		return oEvents;
 	}
 	
+	@Deprecated
 	public void setMidiPlayer(MidiPlayer midiplayer)
 	{
 		this.midiplayer= midiplayer;

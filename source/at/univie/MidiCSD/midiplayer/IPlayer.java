@@ -12,5 +12,6 @@ import at.univie.MidiCSD.TimedMidiStream;
 public interface IPlayer
 {
 	public void Play(TimedMidiStream stream, int deviceNum );
+	public void PlayFile(String filename);
 	public void setWorkbookPath(String path);
 }

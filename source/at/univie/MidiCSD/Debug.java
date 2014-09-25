@@ -22,6 +22,7 @@ public class Debug
 {
 	static javax.swing.JFrame jframe;
 	private static BufferedWriter out= null;
+	private static boolean FILE_OUTPUT= false;
 	
 	public static void showMessage( String sMessage )
 	{
@@ -37,17 +38,19 @@ public class Debug
 				jframe, sMessage, "Debugging information",
 		javax.swing.JOptionPane.INFORMATION_MESSAGE);
 		jframe.dispose();*/
-		if( out == null )
-			openfile();
-		
-		try
-		{
-			out.write(sMessage + "\r\n");
-			out.flush();
-		}
-		catch (IOException e1)
-		{
-			Debug.showException(e1, "queryDispatch");
+		if( FILE_OUTPUT ) {
+			if( out == null )
+				openfile();
+			
+			try
+			{
+				out.write(sMessage + "\r\n");
+				out.flush();
+			}
+			catch (IOException e1)
+			{
+				Debug.showException(e1, "queryDispatch");
+			}
 		}
 		System.err.println("Debug: " + sMessage);
 	}

@@ -138,4 +138,10 @@ public class DirectMidiPlayer implements IPlayer
 	{
 		
 	}
+
+	@Override
+	public void PlayFile(String filename) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("This has to be implemented. Currently Resturcturing Project");
+	}
 }

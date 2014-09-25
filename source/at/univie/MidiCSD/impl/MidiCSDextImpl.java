@@ -19,6 +19,7 @@ import at.univie.MidiCSD.midiplayer.DirectMidiPlayer;
 import at.univie.MidiCSD.midiplayer.IPlayer;
 import at.univie.MidiCSD.midiplayer.MidiPlayer;
 import at.univie.MidiCSD.midiplayer.ToFilePlayer;
+import at.univie.MidiCSD.midiplayer.TimidityPlayer;
 
 import com.sun.star.awt.XWindow;
 import com.sun.star.deployment.PackageInformationProvider;
@@ -85,7 +86,7 @@ public final class MidiCSDextImpl extends WeakBase implements
 	
 	// this has to be static
 	private static MidiQueue m_streamqueue;
-	private static MidiPlayer m_player;
+	// private static MidiPlayer m_player;
 	public static String PackagePath= "";
 	private static IPlayer m_internplayer;
 	private static boolean m_internplayer_init= false;
@@ -116,45 +117,7 @@ public final class MidiCSDextImpl extends WeakBase implements
 	{
 		if( m_internplayer_init == false )
 		{
-			boolean direct= true;
-			
-			//Test if I can play a note on device 0
-			try
-			{
-				MidiDevice.Info[] infos = MidiSystem.getMidiDeviceInfo();
-				
-				MidiDevice dev = MidiSystem.getMidiDevice(infos[0]);
-				if (!dev.isOpen())
-					dev.open();
-				
-				Synthesizer synth;
-				Receiver recv/* = dev.getReceiver() */;
-				
-				synth = MidiSystem.getSynthesizer();
-				synth.open();
-				recv = synth.getReceiver();
-				
-				ShortMessage msg = new ShortMessage();
-				msg.setMessage(ShortMessage.NOTE_ON, 0, 60, 0);
-				recv.send(msg, -1 );
-						
-				recv.close();
-				synth.close();
-				dev.close();
-			}
-			catch(Throwable t)
-			{
-				// Debug.showMessageXframe(t.getMessage(), "initInternPlayer::playNote");
-				// Debug.showMessage("hat nicht geklappt eine Note zu spielen");
-				direct= false;
-			}
-			
-			if( direct )
-				m_internplayer= new DirectMidiPlayer();
-			else
-			{
-				m_internplayer= new ToFilePlayer();
-			}
+			m_internplayer= new TimidityPlayer();
 		}
 	}
 
@@ -223,7 +186,7 @@ public final class MidiCSDextImpl extends WeakBase implements
 		}
 		
 		m_streamqueue= new MidiQueue();
-		m_player= new MidiPlayer();
+		// m_player= new MidiPlayer();
 		
 		if( PackagePath.equals("") )
 			updatePackagePath();
@@ -416,7 +379,7 @@ public final class MidiCSDextImpl extends WeakBase implements
 			tmp= m_streamqueue.getCurrentStream().clone();
 			tmp.ShortenDurations();
 			
-			tmp.setMidiPlayer(m_player);
+			// tmp.setMidiPlayer(m_player);
 			m_internplayer.setWorkbookPath(this.getWorkbookPath());
 			tmp.setPlayer(m_internplayer);
 			
@@ -430,7 +393,7 @@ public final class MidiCSDextImpl extends WeakBase implements
 				tmp= m_streamqueue.getFirstStream().clone();
 				tmp.ShortenDurations();
 				
-				tmp.setMidiPlayer(m_player);
+				// tmp.setMidiPlayer(m_player);
 				m_internplayer.setWorkbookPath(this.getWorkbookPath());
 				tmp.setPlayer(m_internplayer);
 				
@@ -578,10 +541,7 @@ public final class MidiCSDextImpl extends WeakBase implements
 	
 	private void PlayMidiFile(String filename)
 	{
-		if( m_internplayer.getClass() == ToFilePlayer.class )
-			((ToFilePlayer ) m_internplayer).PlayFile(filename);
-		else
-			m_player.PlayMidiFile("", filename);
+		m_internplayer.PlayFile(filename);
 	}
 	
 	private void ResetStreamTime()
@@ -592,7 +552,8 @@ public final class MidiCSDextImpl extends WeakBase implements
 	
 	private void StopMfile()
 	{
-		m_player.stop();
+		// TODO implement stop for IPlayer
+		// m_player.stop();
 	}
 	
 	private void RunSelection() throws IndexOutOfBoundsException
@@ -680,7 +641,7 @@ public final class MidiCSDextImpl extends WeakBase implements
 			
 			tmp= m_streamqueue.get(myStreamName);
 			
-			tmp.setMidiPlayer(m_player);
+			// tmp.setMidiPlayer(m_player);
 			m_internplayer.setWorkbookPath(this.getWorkbookPath());
 			tmp.setPlayer(m_internplayer);
 			
@@ -1237,7 +1198,7 @@ public final class MidiCSDextImpl extends WeakBase implements
 				jnurl= new java.net.URL(url.getUriReference());
 				File f1= UrlToFileMapper.mapUrlToFile(jnurl);
 				
-				// Debug.showMessage( PackagePath + "\r\n" + f1.getAbsolutePath() );
+				Debug.showMessage( PackagePath + "\r\n" + f1.getAbsolutePath() );
 				PackagePath= f1.getAbsolutePath();
 				
 				//Debug.showMessage("Is Csvmidi.lin canRead: " + f1.canRead() );
