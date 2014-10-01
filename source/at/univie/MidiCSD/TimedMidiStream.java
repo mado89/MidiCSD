@@ -743,7 +743,11 @@ FinishDevice:
 				}
 				else if( osName.equals("Linux") )
 				{
-					csvmidi= "Csvmidi.lin";
+					String arch= System.getProperty("os.arch");
+					if( arch == "arm")
+						csvmidi= "Csvmidi.arm";
+					else
+						csvmidi= "Csvmidi.lin";
 					os= 2;
 				}
 				else if( osName.equals("Mac OS X") )
