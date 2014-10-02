@@ -359,8 +359,10 @@ public final class MidiCSDextImpl extends WeakBase implements
 				Debug.showMessageXframe("Wrong Format for AddPhrase", "Error");
 			else
 			{
-				// Debug.showMessage("s1");
-				m_streamqueue.AssertQueue(MidiQueue.DefaultStreamName, true, false);
+				/*
+				 * Change 2014-10-02 assert removed since done in AddToCurrentQueue
+				 */
+				// m_streamqueue.AssertQueue(MidiQueue.DefaultStreamName, true, false);
 				// Debug.showMessage("s2");
 				m_streamqueue.AddToCurrentQueue(range, true, true);
 			}
@@ -400,11 +402,6 @@ public final class MidiCSDextImpl extends WeakBase implements
 				tmp.Play();
 			}
 		}
-		/*
-		 * Dim tmpPhraseToPlay As TimedMidiStream On Error Resume Next Set
-		 * tmpPhraseToPlay = New TimedMidiStream Set tmpPhraseToPlay =
-		 * CurrentStream.Clone tmpPhraseToPlay.ShortenDurations tmpPhraseToPlay.Play
-		 */
 	}
 	
 	private void ClearAllQueues()
@@ -467,6 +464,7 @@ public final class MidiCSDextImpl extends WeakBase implements
 		updatePackagePath();
 		
 		// CurrentStream.WriteMidifile KeepTextFile:=False
+		Debug.showMessage("WriteMfile: " + m_globalFileName);
 		if( m_globalFileName != "" )
 		{
 			m_streamqueue.getCurrentStream().WriteMidiFile(getWorkbookPath(),
@@ -541,6 +539,7 @@ public final class MidiCSDextImpl extends WeakBase implements
 	
 	private void PlayMidiFile(String filename)
 	{
+		Debug.showMessage("PlayMidiFile: " + filename);
 		m_internplayer.PlayFile(filename);
 	}
 	

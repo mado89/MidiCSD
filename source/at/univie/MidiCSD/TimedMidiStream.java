@@ -687,6 +687,12 @@ FinishDevice:
 		return ret;
 	}
 
+	/**
+	 * Create a Midi-File from the MidiStream
+	 * @param path path where the file has to be stored
+	 * @param FileName filename for the midi-file
+	 * @param KeepTextFile if true .csv file will be kept
+	 */
 	public void WriteMidiFile(String path, String FileName, boolean KeepTextFile)
 	{
 		
@@ -704,6 +710,11 @@ FinishDevice:
 		}
 	}
 
+	/**
+	 * Create the Midi-File from the .csv
+	 * @param path
+	 * @param keepTextFile
+	 */
 	private void MakeMidiFromText(String path, boolean keepTextFile)
 	{
 		String CurrFileName;
@@ -720,8 +731,12 @@ FinishDevice:
 		
 		if (myFileName.equals(""))
 			CurrFileName = "tempmid";
-		else
-			CurrFileName = myFileName;
+		else {
+			if( myFileName.endsWith(".mid") )
+				CurrFileName = myFileName.substring(0, myFileName.length() - 4);
+			else
+				CurrFileName = myFileName;
+		}
 		
 		try
 		{
@@ -806,7 +821,7 @@ FinishDevice:
 					commandString = "/usr/local/bin/csvmidi " + path2 + CurrFileName + 
 						".csv " + path2 + CurrFileName + ".mid";
 				*/
-//				Debug.showMessage("Exec: " + commandString);
+				Debug.showMessage("Exec: " + commandString);
 				
 				Runtime rt= Runtime.getRuntime();
 				Process pr= rt.exec(commandString);
@@ -847,62 +862,12 @@ FinishDevice:
 			textFile= null;
 			parser= null;
 			myFileName= CurrFileName + ".mid";
-			
-			//old code
-			/*commandString= path2 + "t2mf " + path2 + CurrFileName + ".txt " + 
-				path2 + CurrFileName + ".mid";
-			
-			Debug.showMessage(commandString);
-			
-			Runtime rt = Runtime.getRuntime();
-			// Process pr = rt.exec("cmd /c dir");
-			Process pr = rt.exec(commandString);
-			
-			BufferedReader input = new BufferedReader(new InputStreamReader(pr
-					.getInputStream()));
-			
-			String line = null;
-			String h = "";
-			
-			while ((line = input.readLine()) != null)
-			{
-				h += line + "\n";
-			}
-			
-			int exitVal = pr.waitFor();
-			Debug.showMessage("Exited with error code " + exitVal);
-			Debug.showMessage(h);*/
 		}
 		catch (Exception e)
 		{
 			Debug.showException(e, "TimedMidiStream::MakeMidiFromText");
 			e.printStackTrace();
 		}
-
-		/*
-		Dim TaskID As Long
-    Dim hProc As Long
-    Dim lExitCode
-    Dim ACCESS_TYPE As Long
-    Dim STILL_ACTIVE As Long
-    Dim commandString As String
-    Dim CurrFileName
-    If myFileName = "" Then
-        CurrFileName = "tempmid"
-    Else
-        CurrFileName = myFileName
-    End If
-    ACCESS_TYPE = &H400
-    STILL_ACTIVE = &H103
-    commandString = "t2mf " & CurrFileName & ".txt" & " " & CurrFileName & ".mid"
-    TaskID = Shell(commandString, vbHidden)
-    hProc = OpenProcess(ACCESS_TYPE, False, TaskID)
-    Do
-        GetExitCodeProcess hProc, lExitCode
-        DoEvents
-    Loop While lExitCode = STILL_ACTIVE
-    If Not KeepTextFile Then Kill CurrFileName & ".txt"
-		*/
 	}
 
 	private void MakeMF(String path) throws IOException
@@ -911,8 +876,12 @@ FinishDevice:
 		BufferedWriter out;
 		if( myFileName.equals("") )
 			CurrFileName= "tempmid.csv";
-		else
-			CurrFileName= myFileName + ".csv";
+		else {
+			if( myFileName.endsWith(".mid") )
+				CurrFileName = myFileName.substring(0, myFileName.length() - 4) + ".csv";
+			else
+				CurrFileName = myFileName + ".csv";
+		}
 		
 		//Debug.showMessage("MakeMF 1 " + CurrFileName);
 		FileOutput();
